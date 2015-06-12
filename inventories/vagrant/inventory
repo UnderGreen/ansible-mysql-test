@@ -1,0 +1,9 @@
+[test1]
+192.168.56.135
+
+[all_protected:children]
+test1
+
+[test1:vars]
+ansible_ssh_user=vagrant
+ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
