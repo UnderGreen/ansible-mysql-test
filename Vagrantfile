@@ -33,12 +33,13 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.provision :ansible do |ansible|
-		ansible.extra_vars = { ansible_ssh_user: 'vagrant' }
-		ansible.playbook = "deploy.yml"
-		ansible.sudo = true
-		ansible.ask_vault_pass = true
-		ansible.groups = {
-			"test1" => ["test1"]
-		}
-	end
+    ansible.extra_vars = { ansible_ssh_user: 'vagrant' }
+    ansible.playbook = "deploy.yml"
+    ansible.sudo = true
+    ansible.ask_vault_pass = true
+    ansible.groups = {
+      "test1" => ["test1"],
+      "all_protected" => ["test1"]
+    }
+  end
 end
