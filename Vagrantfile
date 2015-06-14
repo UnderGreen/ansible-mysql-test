@@ -31,4 +31,14 @@ Vagrant.configure(2) do |config|
     test1.vm.hostname = "test1.dev"
     test1.vm.network :private_network, ip: "192.168.56.135"
   end
+
+  config.vm.provision :ansible do |ansible|
+		ansible.extra_vars = { ansible_ssh_user: 'vagrant' }
+		ansible.playbook = "deploy.yml"
+		ansible.sudo = true
+		ansible.ask_vault_pass = true
+		ansible.groups = {
+			"test1" => ["test1"]
+		}
+	end
 end
